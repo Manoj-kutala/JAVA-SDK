@@ -35,7 +35,7 @@ public class SDKService extends sample1Grpc.sample1ImplBase{
 
         File location1 = new File(path);
 
-        runCommand(location1, "javac -cp '.:/Users/manoj.kutala/Desktop/EFS/library/javax.persistence-api-2.2.jar:/Users/manoj.kutala/Desktop/EFS/library/spring-web-5.3.22.jar:/Users/manoj.kutala/Desktop/EFS/library/lombok-1.18.24.jar:/Users/manoj.kutala/Desktop/EFS/library/spring-beans-5.3.22.jar:/Users/manoj.kutala/Desktop/EFS/library/spring-core-5.3.22.jar:/Users/manoj.kutala/Desktop/EFS/library/lombok.jar:/Users/manoj.kutala/Desktop/EFS/library/commons-collections4-4.2.jar' DCG/*.java");
+        runCommand(location1, "javac -cp '.:/Users/manoj.kutala/Desktop/EFS/library/javax.persistence-api-2.2.jar:/Users/manoj.kutala/Desktop/EFS/library/spring-web-5.3.22.jar:/Users/manoj.kutala/Desktop/EFS/library/lombok-1.18.24.jar:/Users/manoj.kutala/Desktop/EFS/library/spring-beans-5.3.22.jar:/Users/manoj.kutala/Desktop/EFS/library/spring-core-5.3.22.jar:/Users/manoj.kutala/Desktop/EFS/library/commons-collections4-4.2.jar' DCG/*.java");
         runCommand(location1, "jar cvf DCG.jar DCG/*.class");
 
     }
