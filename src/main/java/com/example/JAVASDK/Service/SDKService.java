@@ -76,8 +76,9 @@ public class SDKService extends sample1Grpc.sample1ImplBase{
             while((line = bufferedReader.readLine()) != null) {
                 System.out.println(line);
             }
-
         }
     }
+
+
 
 }
