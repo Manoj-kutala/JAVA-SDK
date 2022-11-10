@@ -1,8 +1,9 @@
 package com.example.JAVASDK.Service;
 
-import com.example.sample.request;
-import com.example.sample.response;
-import com.example.sample.sample1Grpc;
+
+import com.yubi.oss.DCG.SDKServiceGrpc;
+import com.yubi.oss.DCG.request1;
+import com.yubi.oss.DCG.response1;
 import io.grpc.stub.StreamObserver;
 import net.devh.boot.grpc.server.service.GrpcService;
 
@@ -10,12 +11,12 @@ import java.io.*;
 import java.util.concurrent.TimeUnit;
 
 @GrpcService
-public class SDKService extends sample1Grpc.sample1ImplBase{
+public class SDKService extends SDKServiceGrpc.SDKServiceImplBase {
 
     @Override
-    public void func1(request request, StreamObserver<response> responseObserver) {
+    public void getDownloadLink(request1 request, StreamObserver<response1> responseObserver) {
 
-        String path = request.getReq();
+        String path = request.getFolderLocation();
 
         try {
             System.out.println("-------------------");
@@ -24,9 +25,9 @@ public class SDKService extends sample1Grpc.sample1ImplBase{
             e.printStackTrace();
         }
 
-        String s = "Compiled successfully and files are located at" + path;
+        String downloadLink = "Compiled successfully and files are located at" + path;
 
-        responseObserver.onNext(response.newBuilder().setRes(s).build());
+        responseObserver.onNext(response1.newBuilder().setDownloadLink(downloadLink).build());
         responseObserver.onCompleted();
     }
 
@@ -34,8 +35,13 @@ public class SDKService extends sample1Grpc.sample1ImplBase{
     private void compile(String path) throws Exception {
 
         File location1 = new File(path);
+        String absolutepath = System.getProperty("user.dir");
 
-        runCommand(location1, "javac -cp '.:/Users/manoj.kutala/Desktop/EFS/library/javax.persistence-api-2.2.jar:/Users/manoj.kutala/Desktop/EFS/library/spring-web-5.3.22.jar:/Users/manoj.kutala/Desktop/EFS/library/lombok-1.18.24.jar:/Users/manoj.kutala/Desktop/EFS/library/spring-beans-5.3.22.jar:/Users/manoj.kutala/Desktop/EFS/library/spring-core-5.3.22.jar:/Users/manoj.kutala/Desktop/EFS/library/commons-collections4-4.2.jar' DCG/*.java");
+//        runCommand(location1, "javac -cp '.:/Users/manoj.kutala/Desktop/EFS/library/javax.persistence-api-2.2.jar:/Users/manoj.kutala/Desktop/EFS/library/spring-web-5.3.22.jar:/Users/manoj.kutala/Desktop/EFS/library/lombok-1.18.24.jar:/Users/manoj.kutala/Desktop/EFS/library/spring-beans-5.3.22.jar:/Users/manoj.kutala/Desktop/EFS/library/spring-core-5.3.22.jar' DCG/*.java");
+//        runCommand(location1, "javac -cp '.:/Users/manoj.kutala/Desktop/JAVA-SDK/lib/javax.persistence-api-2.2.jar:/Users/manoj.kutala/Desktop/JAVA-SDK/lib/spring-beans-5.3.22.jar:/Users/manoj.kutala/Desktop/JAVA-SDK/lib/spring-core-5.3.22.jar:/Users/manoj.kutala/Desktop/JAVA-SDK/lib/spring-web-5.3.22.jar' DCG/*.java");
+//        runCommand(location1, "javac -cp '.:lib/javax.persistence-api-2.2.jar:lib/spring-beans-5.3.22.jar:lib/spring-core-5.3.22.jar:lib/spring-web-5.3.22.jar' DCG/*.java");
+
+        runCommand(location1, "javac -cp '.:"+absolutepath+"/lib/*' DCG/*.java");
         runCommand(location1, "jar cvf DCG.jar DCG/*.class");
 
     }

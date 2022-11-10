@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.*;
-import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 @RestController
@@ -22,8 +21,6 @@ public class SDKGeneration {
 
 
         File location1 = new File(path);
-
-//        runCommand(location1, "javac -cp '.:/Users/manoj.kutala/Desktop/EFS/library/javax.persistence-api-2.2.jar:/Users/manoj.kutala/Desktop/EFS/library/spring-web-5.3.22.jar:/Users/manoj.kutala/Desktop/EFS/library/lombok-1.18.24.jar:/Users/manoj.kutala/Desktop/EFS/library/spring-beans-5.3.22.jar:/Users/manoj.kutala/Desktop/EFS/library/spring-core-5.3.22.jar:/Users/manoj.kutala/Desktop/EFS/library/lombok.jar' DCG/*.java");
 
         runCommand(location1, "javac -cp '.:lib/javax.persistence-api-2.2.jar:lib/spring-beans-5.3.22.jar:lib/spring-core-5.3.22.jar:lib/spring-web-5.3.22.jar' DCG/*.java");
 
